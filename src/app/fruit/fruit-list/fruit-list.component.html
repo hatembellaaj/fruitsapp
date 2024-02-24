@@ -1,0 +1,48 @@
+<div class="row mt-2">
+    <div class="col col-md-4 offset-md-4">
+      <a class="btn btn-primary" routerLink="/fruits/create">Create</a>
+    </div>
+  </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prix</th>
+      <th>Quantité</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(fruit of this.fruits;track fruit.id){
+    <tr>
+      <td>{{ fruit.name }}</td>
+      <td>{{ fruit.price }}</td>
+      <td>{{ fruit.quantity }}</td>
+      <td>
+        <a class="btn btn-primary" routerLink="['/fruits/edit', fruit.id]">Edit</a>
+        <button class="btn btn-danger btn-sm" (click)="confirmDelete(fruit)">Supprimer</button>
+      </td>
+    </tr>
+}
+  </tbody>
+</table>
+
+<!-- Popup de confirmation -->
+<div *ngIf="showConfirmation" class="modal fade show" style="display: block;" id="confirmationModal" tabindex="-1"
+  aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cancelDelete()"></button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de vouloir supprimer ce fruit ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cancelDelete()">Annuler</button>
+        <button type="button" class="btn btn-danger" (click)="deleteFruit()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
