@@ -16,6 +16,7 @@ export class FruitListComponent implements OnInit {
   constructor(private fruitService: FruitService, private router:Router) { }
 
   ngOnInit(): void {
+    console.log("into fruits ....");
     this.loadFruits();
   }
 
